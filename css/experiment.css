@@ -1,0 +1,180 @@
+.label {
+  display: block;
+  padding: .2em .6em .3em;
+  font-size: 120%;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+.label + .label {
+    margin-top: 1px;
+}
+
+.btn .label {
+  position: relative;
+  top: -1px;
+}
+.label-default {
+  background-color: #777777;
+}
+.label-default[href]:hover,
+.label-default[href]:focus {
+  background-color: #5e5e5e;
+}
+.label-primary {
+  background-color: #337ab7;
+  font-weight: bold;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #286090;
+}
+.label-success {
+  background-color: #5cb85c;
+}
+.label-success[href]:hover,
+.label-success[href]:focus {
+  background-color: #449d44;
+}
+.label-info {
+  background-color: #5bc0de;
+}
+.label-info[href]:hover,
+.label-info[href]:focus {
+  background-color: #31b0d5;
+}
+.label-warning {
+  background-color: #f0ad4e;
+}
+.label-warning[href]:hover,
+.label-warning[href]:focus {
+  background-color: #ec971f;
+}
+.label-danger {
+  background-color: #d9534f;
+}
+.label-danger[href]:hover,
+.label-danger[href]:focus {
+  background-color: #c9302c;
+}
+
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  padding: 6px 6px;
+  font-size: 18px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn-default {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.btn-default:focus,
+.btn-default.focus {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.btn-default:hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+  height:70%;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.btn-primary:focus,
+.btn-primary.focus {
+  color: #ffffff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.btn-primary:hover {
+  color: #ffffff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+
+
+/*! Custom CSS*/
+html,body { height:100%; }
+
+#state{
+  height:10%;
+}
+.row{
+  display:flex;
+  justify-content:flex-start;
+  align-items:stretch;
+  flex-wrap:nowrap;
+  padding-top:10px;
+  padding-right:10px;
+  padding-bottom:5px;
+  padding-left:10px;
+  width:100%;
+}
+.cellstate{
+  height:100%;
+  width:5%;
+  flex-grow:1;
+  flex-basis:100%;
+  padding:1px;
+}
+.cellstimulusresponse{
+  height:100%;
+  width:23%;
+  flex-grow:1;
+  flex-basis:100%;
+  padding:1px;
+}
+.cellnext{
+  height:100%;
+  width:14%;
+  flex-grow:1;
+  flex-basis:100%;
+  padding:1px;
+}
+#interaction{
+	border-color:#f4ad42;
+    border-size: 1px;
+    border-style: solid;
+    height:90%;;
+    width:98%;
+    position:absolute;
+      
+}

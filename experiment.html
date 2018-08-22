@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Experiment</title>
+
+
+    <link href="css/experiment.css" rel="stylesheet"> 
+   <link href="css/external/marking-menu.css" rel="stylesheet">
+
+
+  </head>
+  <body onload="initExperiment()">
+
+	<!-- State Div -->
+    <div class="row" id="state">
+      <div class="cellstate">
+	<span class="label label-primary">Trial</span>
+	<span class="label label-default" id="trialNumber">8/20</span>
+      </div>
+      <div class="cellstate">
+      <span class="label label-primary">Menu Type</span>
+	<span class="label label-default" id="menuType"></span>
+      </div>
+      <div class="cellstate">
+        <span class="label label-primary">Menu Depth</span>
+	<span class="label label-default" id="menuDepth"></span>
+      </div>
+      <div class="cellstate">
+        <span class="label label-primary">IV 3</span>
+	<span class="label label-default">To be implemented</span>
+      </div>
+            <div class="cellstimulusresponse">
+        <span class="label label-primary">Please select</span>
+	<span class="label label-default" id="targetItem"></span>
+      </div>
+        <div class="cellstimulusresponse">
+        <span class="label label-primary">Item selected</span>
+	<span class="label label-default" id="selectedItem">&nbsp;</span>
+      </div>            
+        <div class="cellnext">
+      		<button type="button" class="btn btn-block btn-primary btn-lg" onclick="nextTrial()">Next</button>
+      </div>      
+    </div>
+
+<!--  Interaction Div-->
+
+	<div class="row" id="interaction" onmousedown="tracker.startTimer()">
+		<div id="marking-menu-container" style="height:100%;width:100%"></div>
+	</div>
+ 
+
+
+    <script src="./js/external/jquery-3.3.1.min.js"></script>
+    <script src="./js/external/rxjs.umd.js"></script>
+  <script src="./js/external/marking-menu.js"></script>
+    <script src="./js/experiment.js"></script>
+  </body>
+</html>
