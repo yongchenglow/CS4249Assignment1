@@ -70,7 +70,6 @@ function initExperiment() {
 // Move to next trai and record events
 function nextTrial() {
 
-	
 	var interactionContainer = document.getElementById('interaction-container');
 	
 	if (currentTrial <= numTrials) {
