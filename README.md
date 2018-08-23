@@ -24,6 +24,9 @@ This repository contains a basic interface and instrumentation to perform an emp
 
 Ideally, you shouldn't need to edit any of the files under "/external" unless your experimental design requires modifications to the menu implementation. Please avoid tweaking parameters of the menu such as color, size etc. To maintain consistency across the class we will use the default parameters as provided in this repository.
 
+### Recommended Browser
+This repository has only been tested on Chrome, Windows 10.
+
  ## Credits
 This repository contains slightly modified implementations of menus from the original contributors listed below.
 1. Marking Menu : Forked from https://github.com/QuentinRoy/Marking-Menu
