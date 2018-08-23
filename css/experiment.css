@@ -134,7 +134,7 @@
 /*! Custom CSS*/
 html,body { height:100%; }
 
-#state{
+#state-container{
   height:10%;
 }
 .row{
@@ -169,7 +169,7 @@ html,body { height:100%; }
   flex-basis:100%;
   padding:1px;
 }
-#interaction{
+#interaction-container{
 	border-color:#f4ad42;
     border-size: 1px;
     border-style: solid;
@@ -178,3 +178,26 @@ html,body { height:100%; }
     position:absolute;
       
 }
+
+  #radialmenu {
+        font-family: 'stint ultra condensed', tahoma, sans-serif;
+        fill: #fff !important;
+    }
+
+    .mouseover {
+        opacity: 0.5;
+    }
+    body > svg > text {
+        font-size: 60px;
+        fill: #fff;
+        font-family: 'stint ultra condensed', tahoma, sans-serif;
+    }
+    .menuitem {
+        fill: #555;
+    }
+    #path_CURSOR {
+        fill:#777;
+    }
+    .curved, .radial {
+        fill: #fff;
+    }

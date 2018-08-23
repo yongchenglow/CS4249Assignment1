@@ -1,5 +1,5 @@
 Menu Type,Menu Depth,Target Item
-Marking,2,Item 1
-Marking,2,Item 2
-Marking,3,Item 6
-Marking,3,Item 11
+Marking,2,Hats
+Radial,2,Hats
+Marking,3,Jeans
+Radial,3,Jeans
