@@ -6,6 +6,24 @@ This repository contains a basic interface and instrumentation to perform an emp
 
  You may fork this repository to your own Github account and clone your forked version for development. This will also help you use Github pages for hosting if you plan to conduct experiments online.
  
+ ## Project Structure
+ The interface is a static web project and you can simply open the html files in a browser to run.
+ 
+    ├── css                     # Style Sheets
+         ├── external           
+         ├── experiment.css    
+    ├── js                      # Javascript
+         ├── external          
+         ├── experiment.js    
+         ├── experiment-tracker.js
+    ├── data           
+         ├── experiment.csv     # Contains information about the trials
+         ├── menu_depth_2.csv   # Menu with depth 2
+         ├── manu_depth_3.csv   # Menu with depth 3
+    ├── experiment.html    
+
+Ideally, you shouldn't need to edit any of the files under "/external" unless your experimental design requires modifications to the menu implementation. Please avoid tweaking parameters of the menu such as color, size etc. To maintain consistency across the class we will use the default parameters as provided in this repository.
+
  ## Credits
 This repository contains slightly modified implementations of menus from the original contributors listed below.
 1. Marking Menu : Forked from https://github.com/QuentinRoy/Marking-Menu
