@@ -25,12 +25,12 @@ This repository contains a basic interface and instrumentation to perform an emp
 
 Ideally, you shouldn't need to edit any of the files under "/external" unless your experimental design requires modifications to the menu implementation. Please avoid tweaking parameters of the menu such as color, size etc. To maintain consistency across the class we will use the default parameters as provided in this repository.
 
-###Marking Menu 
+### Marking Menu 
 ..* Popup: Left Mouse Down
 ..* Select: Stroke to leaf node
 ..* Reset: Release Mouse Down
 ..* Note:* Expert user's can make a fast stroke instead of waiting for the manu to pop up.
-###Radial Menu:
+### Radial Menu:
 ..* Popup: Right Click
 ..* Select: Left Click
 ..* Reset: Right Click
