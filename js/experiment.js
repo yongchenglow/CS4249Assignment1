@@ -134,6 +134,9 @@ function nextTrial() {
 
 		currentTrial++;
 	} else {
+		
+	    var nextButton = document.getElementById("nextButton");
+	    nextButton.innerHTML = "Done";
 		tracker.toCsv();
 	}
 }
@@ -160,7 +163,7 @@ function initializeMarkingMenu(){
 	}
 	var markingMenuContainer = document.getElementById('marking-menu-container');
 	if(markingMenuContainer == null){
-		interactionContainer.innerHTML += "<div id=\"marking-menu-container\" style=\"height:100%;width:100%\" onmousedown=\"markingMenuOnMouseDown()\"></div>";
+		interactionContainer.innerHTML += "<div id=\"marking-menu-container\" style=\"height:100%;width:100%\" onmousedown=\"markingMenuOnMouseDown()\" oncontextmenu=\"preventRightClick(event)\"></div>";
 	}
 }
 
@@ -216,6 +219,11 @@ function markingMenuOnSelect(selectedItem){
 	tracker.recordSelectedItem(selectedItem.name);
 	document.getElementById("selectedItem").innerHTML = selectedItem.name;
 }
+
+function preventRightClick(e){
+	e.preventDefault();
+}
+
 
 /*Functions related to RadialMenu*/
 
@@ -277,6 +285,8 @@ function toggleRadialMenu(e) {
 			tracker.startTimer();
 		}
 	}else{
+		
+		// Record previous item
 		tracker.recordSelectedItem(null);
 		
 		if(radialMenuTree != null){

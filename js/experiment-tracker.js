@@ -49,11 +49,12 @@ class ExperimentTracker {
 			csvFile += "\n";
 		}
 
-		var hiddenElement = document.createElement('a');
-		hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvFile);
-		hiddenElement.target = '_blank';
-		hiddenElement.download = 'experiment.csv';
-		hiddenElement.click();
+		var hiddenLink = document.createElement('a');
+		hiddenLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvFile);
+		hiddenLink.target = '_blank';
+		hiddenLink.download = 'experiment.csv';
+		document.body.appendChild(hiddenLink);
+		hiddenLink.click();
 	}
 
 
