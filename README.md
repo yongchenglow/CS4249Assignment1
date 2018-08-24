@@ -2,7 +2,7 @@
 This repository contains a basic interface and instrumentation to perform an empirical evaluation of Marking Menus and Radial Menus. You are expected to modify the code to perform the following tasks
 1. Implement a new Independent Variable
 2. Implement a new Dependent Variable
-3. Add the consent, pre-survey and post-survey questionnaires.
+3. Modify tracking to record participant id, consent, pre-survey and post-survey questionnaires.
 
  You may fork this repository to your own Github account and clone your forked version for development. This will also help you use Github pages for hosting if you plan to conduct experiments online.
  
