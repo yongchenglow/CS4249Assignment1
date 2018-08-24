@@ -17,7 +17,8 @@ This repository contains a basic interface and instrumentation to perform an emp
          ├── experiment.js    
          ├── experiment-tracker.js
     ├── data           
-         ├── experiment.csv     # Contains information about the trials
+         ├── experiment.csv     # Contains arrangement of trials
+         ├── menu_depth_1.csv   # Menu with depth 1
          ├── menu_depth_2.csv   # Menu with depth 2
          ├── manu_depth_3.csv   # Menu with depth 3
     ├── experiment.html    
