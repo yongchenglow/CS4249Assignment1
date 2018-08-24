@@ -25,12 +25,12 @@ This repository contains a basic interface and instrumentation to perform an emp
 Ideally, you shouldn't need to edit any of the files under "/external" unless your experimental design requires modifications to the menu implementation. Please avoid tweaking parameters of the menu such as color, size etc. To maintain consistency across the class we will use the default parameters as provided in this repository.
 
 ### Recommended Browsers
-This repository has been tested on the browsers listed below. It is recommended that you use Chrome.
+This repository has been tested on the browsers listed below. It is suggested you use Chrome.
 1. Chrome 68.0.3440.106
 2. Firfox 61.0.2
 3. Safari V10
 
  ## Credits
-This repository contains slightly modified implementations of menus from the original contributors listed below.
+This repository contains modified implementations of menus from the original contributors listed below.
 1. Marking Menu : Forked from https://github.com/QuentinRoy/Marking-Menu
 2. Radial Menu : Forked from https://github.com/lgrkvst/d3-sunburst-menu
