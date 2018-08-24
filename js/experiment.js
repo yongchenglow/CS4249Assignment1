@@ -2,6 +2,7 @@
 
 // Location of data files
 const trialsFile = "./data/experiments.csv"
+const menuL1File = "./data/menu_depth_1.csv"
 const menuL2File = "./data/menu_depth_2.csv"
 const menuL3File = "./data/menu_depth_3.csv"
 
@@ -10,9 +11,11 @@ var menu;
 var trialsData = [];
 var numTrials = 0;
 var currentTrial = 1;
+var markingMenuL1 = [];
 var markingMenuL2 = [];
 var markingMenuL3 = [];
 var radialMenuTree = null;
+var radialMenuL1 = [];
 var radialMenuL2 = [];
 var radialMenuL3 = [];
 var tracker = new ExperimentTracker();
@@ -53,12 +56,15 @@ function initExperiment() {
 	}
 
 	// Get Menus
+	var menuL1Data = getData(menuL1File);
 	var menuL2Data = getData(menuL2File);
 	var menuL3Data = getData(menuL3File);
 	
 	// Format CSV Menu to respective Menu structures
+	markingMenuL1 = formatMarkingMenuData(menuL1Data);
 	markingMenuL2 = formatMarkingMenuData(menuL2Data);
 	markingMenuL3 = formatMarkingMenuData(menuL3Data);
+	radialMenuL1 = formatRadialMenuData(menuL1Data);
 	radialMenuL2 = formatRadialMenuData(menuL2Data);
 	radialMenuL3 = formatRadialMenuData(menuL3Data);
 	
@@ -66,11 +72,16 @@ function initExperiment() {
 	nextTrial();
 }
 
+// Wrapper around nextTrial() to prevent click events while loading menus
+function loadNextTrial(e){
+	e.preventDefault();
+	nextTrial();
+	
+}
 
 // Move to next trai and record events
 function nextTrial() {
 
-	var interactionContainer = document.getElementById('interaction-container');
 	
 	if (currentTrial <= numTrials) {
 
@@ -92,18 +103,13 @@ function nextTrial() {
 		tracker.targetItem = targetItem;
 
 		if (menuType === "Marking") {
+				
+			initializeMarkingMenu();
 			
-			//Unload Radial Menu
-			var radialMenuContainer = document.getElementById('radial-menu-container');
-			if(radialMenuContainer != null){
-				radialMenuContainer.parentNode.removeChild(radialMenuContainer);
+			if(menuDepth == 1){
+				menu = MarkingMenu(markingMenuL1, document.getElementById('marking-menu-container'));
 			}
-			
-			// Load Marking Menu
-			interactionContainer.innerHTML += "<div id=\"marking-menu-container\" style=\"height:100%;width:100%\" onmousedown=\"markingMenuOnMouseDown()\"></div>";
-			
-			
-			if(menuDepth == 2){
+			else if(menuDepth == 2){
 				menu = MarkingMenu(markingMenuL2, document.getElementById('marking-menu-container'));
 			}else if(menuDepth == 3){
 				menu = MarkingMenu(markingMenuL3, document.getElementById('marking-menu-container'));
@@ -113,20 +119,11 @@ function nextTrial() {
 
 		} else if (menuType === "Radial") {
 
-			// Unload Marking Menu
-			if (markingMenuSubscription != null) {
-				markingMenuSubscription.unsubscribe();
+			initializeRadialMenu();			
+			if (menuDepth == 1){
+				menu = createRadialMenu(radialMenuL1);
 			}
-			var markingMenuContainer = document.getElementById('marking-menu-container');
-			if(markingMenuContainer!=null){
-				markingMenuContainer.parentNode.removeChild(markingMenuContainer);
-			}
-			
-			
-
-			// Load Radial Menu
-			interactionContainer.innerHTML += "<div id=\"radial-menu-container\" style=\"height:100%;width:100%\" oncontextmenu=\"toggleRadialMenu(event)\"></div>";
-			if(menuDepth == 2){
+			else if(menuDepth == 2){
 				menu = createRadialMenu(radialMenuL2);
 			}else if(menuDepth == 3){
 				menu = createRadialMenu(radialMenuL3);
@@ -145,13 +142,27 @@ function nextTrial() {
 
 
 
-
-
-
-
-
 /*Functions related to MarkingMenu*/
 
+// Reconstructs marking menu container
+function initializeMarkingMenu(){
+	
+	//Unload Radial Menu
+	var radialMenuContainer = document.getElementById('radial-menu-container');
+	if(radialMenuContainer != null){
+		radialMenuContainer.parentNode.removeChild(radialMenuContainer);
+	}
+	
+	// Load Marking Menu
+	var interactionContainer = document.getElementById('interaction-container');
+	if (markingMenuSubscription != null) {
+		markingMenuSubscription.unsubscribe();
+	}
+	var markingMenuContainer = document.getElementById('marking-menu-container');
+	if(markingMenuContainer == null){
+		interactionContainer.innerHTML += "<div id=\"marking-menu-container\" style=\"height:100%;width:100%\" onmousedown=\"markingMenuOnMouseDown()\"></div>";
+	}
+}
 
 //Formats csv menu data in the structure accepted by radial menu
 // Assumes menu csv is sorted by Id and Parent both Ascending
@@ -195,24 +206,58 @@ function formatMarkingMenuData(data) {
 
 // Function to start tracking timer on mouse down
 function markingMenuOnMouseDown(){
-	console.log('In start timer');
+
 	tracker.startTimer();
 }
 
 //Function to start tracking timer on mouse down
 function markingMenuOnSelect(selectedItem){
-	console.log('In selected item');
+
 	tracker.recordSelectedItem(selectedItem.name);
 	document.getElementById("selectedItem").innerHTML = selectedItem.name;
 }
 
 /*Functions related to RadialMenu*/
 
+// Reconstructs radial menu container
+function initializeRadialMenu(){
+	
+	// Unload Marking Menu
+	if (markingMenuSubscription != null) {
+		markingMenuSubscription.unsubscribe();
+	}
+	var markingMenuContainer = document.getElementById('marking-menu-container');
+	if(markingMenuContainer!=null){
+		markingMenuContainer.parentNode.removeChild(markingMenuContainer);
+	}
+	
+	
+
+	// Reload Radial Menu
+	var interactionContainer = document.getElementById('interaction-container');
+	var radialMenuContainer = document.getElementById('radial-menu-container');
+	if(radialMenuContainer == null){
+		interactionContainer.innerHTML += "<div id=\"radial-menu-container\" style=\"height:100%;width:100%\" oncontextmenu=\"toggleRadialMenu(event)\"></div>";
+	}
+
+}
+
 // Create radial menu svg element
 function createRadialMenu(radialMenuL){
+	
+    var radialmenuElement = document.getElementById('radialmenu');
+    if(radialmenuElement != null){
+    	radialmenuElement.parentNode.removeChild(radialmenuElement);
+    }
+	
+	
 	var w = window.innerWidth;
 	var h = window.innerHeight;
-	radialMenuSvg = d3.select("#radial-menu-container").append("svg").attr("width", w).attr("height", h);
+	var radialMenuSvgElement = document.getElementById('radial-menu-svg');
+	if (radialMenuSvgElement != null){
+		radialMenuSvgElement.parentNode.removeChild(radialMenuSvgElement);
+	}
+	radialMenuSvg = d3.select("#radial-menu-container").append("svg").attr("width", w).attr("height", h).attr("id","radial-menu-svg");
 	radialMenuTree = radialMenuL;
 	return radialMenuSvg;
 }
@@ -220,36 +265,36 @@ function createRadialMenu(radialMenuL){
 // Toggle radial menu on right click
 function toggleRadialMenu(e) {
 	
-	if(radialMenuTree != null){
-
-		var radialMenu = document.getElementById('radialmenu');
+	if(tracker.startTime == null){
 	
-		if (radialMenu === null) {
-	
-			menu = module.exports(radialMenuTree, {
-				x: e.clientX,
-				y: e.clientY
-			}, radialMenuSvg);
-	
-		} else {
-	
-			menu = module.exports(radialMenuTree, {
-				x: e.clientX,
-				y: e.clientY
-			}, radialMenuSvg);
-	
-		}
+		if(radialMenuTree != null){
+				menu = module.exports(radialMenuTree, {
+					x: e.clientX,
+					y: e.clientY
+				}, radialMenuSvg);
 		
+			// Start timing once menu appears
+			tracker.startTimer();
+		}
+	}else{
+		tracker.recordSelectedItem(null);
+		
+		if(radialMenuTree != null){
+			menu = module.exports(radialMenuTree, {
+				x: e.clientX,
+				y: e.clientY
+			}, radialMenuSvg);
+	
 		// Start timing once menu appears
-		console.log('In selected item');
 		tracker.startTimer();
+		}
 	}
 	e.preventDefault();
 }
 
 //Callback for radialmenu when a leaf node is selected
 function radialMenuOnSelect() {
-	console.log('In selected item');
+
 	tracker.recordSelectedItem(this.id);
 	var radialmenu = document.getElementById('radialmenu');
 	radialmenu.parentNode.removeChild(radialmenu);
@@ -288,7 +333,9 @@ function formatRadialMenuData(data) {
 			continue;
 		} else {
 			var _children = menuItems[parent]['_children'];
-			menuItems[id]['callback'] = radialMenuOnSelect;
+			if(menuItems[id]['_children'].length == 0){
+				menuItems[id]['callback'] = radialMenuOnSelect;	
+			}
 			_children.push(menuItems[id]);
 			delete menuItems[id];
 			menuItems[parent]['_children'] = _children;
@@ -298,6 +345,12 @@ function formatRadialMenuData(data) {
 
 	var menuItemsList = [];
 	for (var key in menuItems) {
+		if (menuItems[key]['_children'].length == 0){
+			delete menuItems[key]['_children'];
+			menuItems[key]['callback'] = radialMenuOnSelect;
+		} else{
+			delete menuItems[key]['callback'];
+		}
 		menuItemsList.push(menuItems[key]);
 	}
 

@@ -14,25 +14,32 @@ class ExperimentTracker {
 		this.startTime = null;
 		this.endTime = null;
 	}
+	
+	resetTimers(){
+		this.startTime = null;
+		this.endTime = null;
+	}
 
 	startTimer() {
 		this.startTime = Date.now();
 	}
 
 	recordSelectedItem(selectedItem) {
-		this.stopTimer();
 		this.selectedItem = selectedItem;
+		this.stopTimer();
 	}
 
 	stopTimer() {
-		this.attempt++;
+		
 		this.endTime = Date.now();
 		this.trials.push([this.trial, this.attempt, this.menuType, this.menuDepth, this.targetItem, this.selectedItem, this.startTime, this.endTime])
+		this.resetTimers();
+		this.attempt++;
 
 	}
 
 	newTrial() {
-		this.attempt = 0;
+		this.attempt = 1;
 	}
 
 	toCsv() {

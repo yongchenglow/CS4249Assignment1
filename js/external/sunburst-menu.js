@@ -29,13 +29,13 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
     var radius = _radius = 140;
     var rotate = _rotate = Math.PI / 2;
     var hue = d3.scale.category10(); // if node parents don't specify a fill attribute (i.e. a color)
-    var backSize = 0.1; // back button size as percent of full circle
+    var backSize = 0; // back button size as percent of full circle
     var currentNode = tree; // start traversal at root level
     var menuWaiter;
     var idleTime = 1; // time (ms) between edge nudge and traversal
     var padAngle = 0.01;
     var dropshadow = false;
-    var cornerRadius = 2; // 4 is neat but causes transition flickering if root has exactly two children
+    var cornerRadius = 4; // 4 is neat but causes transition flickering if root has exactly two children
     var loaderDuration = 1; // duration of loading arcs in ms
     var menu_level_scope = 1; // number of menu levels to visualise together
 
@@ -149,7 +149,7 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
     // we're only using n(ode) to set initial menu position
     
     radialmenu = document.getElementById('radialmenu');
-    if(radialmenu === null){
+    if(radialmenu == null){
     	radialmenu = container.append("g").attr("id", "radialmenu").attr("transform", "translate(" + n.x + "," + n.y + ")");
     }else{
     	radialmenu.parentNode.removeChild(radialmenu);
