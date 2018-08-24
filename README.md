@@ -27,14 +27,14 @@ Ideally, you shouldn't need to edit any of the files under "/external" unless yo
 
 ### Menu Usage
 1. Marking Menu: 
-   Popup: Left Mouse Down
-   Select: Stroke to leaf node
-   Reset: Release Mouse Down
-   Note:* Expert user's can make a fast stroke instead of waiting for the manu to pop up.
+   ..* Popup: Left Mouse Down
+   ..* Select: Stroke to leaf node
+   ..* Reset: Release Mouse Down
+   ..* Note:* Expert user's can make a fast stroke instead of waiting for the manu to pop up.
 2. Radial Menu:
-   Popup: Right Click
-   Select: Left Click
-   Reset: Right Click
+   ..* Popup: Right Click
+   ..* Select: Left Click
+   ..* Reset: Right Click
    
 ### Recommended Browsers
 This repository has been tested on the browsers listed below. It is suggested you use Chrome.
