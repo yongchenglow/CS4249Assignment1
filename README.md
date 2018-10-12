@@ -5,10 +5,10 @@ This repository contains a basic interface and instrumentation to perform an emp
 3. Modify tracking to record participant id, consent, pre-survey and post-survey questionnaires.
 
  You may fork this repository to your own Github account and clone your forked version for development. This will also help you use Github pages for hosting if you plan to conduct experiments online.
- 
+
  ## Project Structure
  The interface is a static web project. However because of cross origin restrictions you will need a web server to run the experiment. Either turn on Github Pages(https://pages.github.com/) for your forked repository or setup a local server of your choice.
- 
+
     ├── css                     # Style Sheets
          ├── external           
          ├── experiment.css    
@@ -21,11 +21,19 @@ This repository contains a basic interface and instrumentation to perform an emp
          ├── menu_depth_1.csv   # Menu with depth 1
          ├── menu_depth_2.csv   # Menu with depth 2
          ├── manu_depth_3.csv   # Menu with depth 3
-    ├── experiment.html    
+    ├── index.html
+    ├── preExperimentSurvey.html   
+    ├── practice.html   
+    ├── experiment.html
+    ├── postExperimentSurvey.html
+    ├── debreif.html
+
+
+The participant will go through each of the HTML pages sequentially. The participant ID is passed through the pages shown at the end of the url(?id=X). Using the participant ID, the experiment.js will determine which set of experiment will be shown to the user.
 
 Ideally, you shouldn't need to edit any of the files under "/external" unless your experimental design requires modifications to the menu implementation. Please avoid tweaking parameters of the menu such as color, size etc. To maintain consistency across the class we will use the default parameters as provided in this repository.
 
-### Marking Menu 
+### Marking Menu
 - Popup: Left Mouse Down
 - Select: Stroke to leaf node
 - Reset: Release Mouse Down
@@ -34,7 +42,7 @@ Ideally, you shouldn't need to edit any of the files under "/external" unless yo
 - Popup: Right Click
 - Select: Left Click
 - Reset: Right Click
-   
+
 ### Recommended Browsers
 This repository has been tested on the browsers listed below. It is suggested you use Chrome.
 1. Chrome 68.0.3440.106

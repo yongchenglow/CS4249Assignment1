@@ -147,13 +147,15 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
         .nodes(tree);
 
     // we're only using n(ode) to set initial menu position
-    
+
     radialmenu = document.getElementById('radialmenu');
+    var coordX = n.x - 40;
+    var coordY = n.y - 100;
     if(radialmenu == null){
-    	radialmenu = container.append("g").attr("id", "radialmenu").attr("transform", "translate(" + n.x + "," + n.y + ")");
+    	radialmenu = container.append("g").attr("id", "radialmenu").attr("transform", "translate(" + coordX + "," + coordY + ")");
     }else{
     	radialmenu.parentNode.removeChild(radialmenu);
-    	radialmenu = container.append("g").attr("id", "radialmenu").attr("transform", "translate(" + n.x + "," + n.y + ")");
+    	radialmenu = container.append("g").attr("id", "radialmenu").attr("transform", "translate(" + coordX + "," + coordY + ")");
     }
 
     // define a dropshadow
@@ -204,7 +206,7 @@ module.exports = (function d3_sunburst_menu(tree, n, container) {
 //            }
 //        }
 //    });
-    
+
     //mouseclick
     container.on("click", function() {
         var currentArc, offset = -10; // activate move slighly before reaching menu edge

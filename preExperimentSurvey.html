@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Experiment to compare Marking and Radial menus</title>
+
+    <!-- BootStrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- Fonts -->
+	<link href='https://fonts.googleapis.com/css?family=Stint+Ultra+Condensed' rel='stylesheet' type='text/css'>
+    <style>
+        .curr-step{
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            margin:5px;
+        }
+
+        .step{
+            color: #fff;
+            background-color: lightgrey;
+            border-color: lightgrey;
+            margin:5px;
+        }
+
+        .finish-step{
+            color: #fff;
+            background-color: lightblue;
+            border-color: lightblue;
+            margin:5px;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+        <div class="h1 text-center">
+            Marking vs Radial Menu experiment
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <button type="button" class="btn btn-sm finish-step disabled">
+                    1. Instructions
+                </button>
+                <button type="button" class="btn btn-sm curr-step disabled">
+                    2. Pre-Experiment Survey
+                </button>
+                <button type="button" class="btn btn-sm step disabled">
+                    3. Practice
+                </button>
+                <button type="button" class="btn btn-sm step disabled">
+                    4. Experiment
+                </button>
+                <button type="button" class="btn btn-sm step disabled">
+                    5. Post-Experiment Survey
+                </button>
+                <button type="button" class="btn btn-sm step disabled">
+                    6. Debreif
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 text-center">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdI9fiSVdBbG8JbMzBRpv2n6lBMmWLRtUBVFfqnTAhV2HskXg/viewform?embedded=true" width="700" height="2500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-primary btn-lg" id="next">Start Practice</button>
+        </div>
+        <br>
+        <br>
+    </div>
+  </body>
+
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        $( document ).ready(function() {
+            // Obtained from https://html-online.com/articles/get-url-parameters-javascript/
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            var participantID = vars["id"];
+            console.log(participantID);
+            $("#next").click(function(){
+                if(participantID > 0 && participantID < 9){
+                    var url = "practice.html?id="+participantID;
+                    location.href = url;
+                }
+            });
+        });
+    </script>
+
+</html>

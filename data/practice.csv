@@ -1,0 +1,13 @@
+Menu Type,Menu Depth,Pointing Device,Target Item
+Marking,1,Trackpad,Continents
+Marking,2,Trackpad,Asia
+Marking,3,Trackpad,Singapore
+Radial,1,Trackpad,Continents
+Radial,2,Trackpad,Asia
+Radial,3,Trackpad,Singapore
+Marking,1,Mouse,Continents
+Marking,2,Mouse,Asia
+Marking,3,Mouse,Singapore
+Radial,1,Mouse,Continents
+Radial,2,Mouse,Asia
+Radial,3,Mouse,Singapore

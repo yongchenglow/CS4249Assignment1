@@ -1,7 +1,7 @@
 'use strict';
 
 // Location of data files
-const trialsFile = "./data/experiments.csv"
+const trialsFile = "./data/practice.csv"
 const menuL1File = "./data/menu_depth_1.csv"
 const menuL2File = "./data/menu_depth_2.csv"
 const menuL3File = "./data/menu_depth_3.csv"
@@ -10,7 +10,6 @@ const menuL3File = "./data/menu_depth_3.csv"
 var menu;
 var trialsData = [];
 var numTrials = 0;
-var totalTrials = 0;
 var currentTrial = 1;
 var markingMenuL1 = [];
 var markingMenuL2 = [];
@@ -50,23 +49,19 @@ function initExperiment() {
 	var data = getData(trialsFile);
 
 	var records = data.split("\n");
-	totalTrials = records.length - 1;
-	for (var i = 1; i <= totalTrials; i++) {
+	numTrials = records.length - 1;
+	for (var i = 1; i <= numTrials; i++) {
 		var cells = records[i].split(",");
-		var participant = cells[0].trim();
-		var menuType = cells[1].trim();
-		var menuDepth = cells[2].trim();
-		var pointingDevice = cells[3].trim();
-		var targetItem = cells[4].trim();
-		if(participantID == participant){
-			numTrials++;
-			trialsData[numTrials] = {
-				'Menu Type': menuType,
-				'Menu Depth': menuDepth,
-				'Pointing Device': pointingDevice,
-				'Target Item': targetItem
-			};
-		}
+		var menuType = cells[0].trim();
+		var menuDepth = cells[1].trim();
+		var pointingDevice = cells[2].trim();
+		var targetItem = cells[3].trim();
+		trialsData[i] = {
+			'Menu Type': menuType,
+			'Menu Depth': menuDepth,
+			'Pointing Device': pointingDevice,
+			'Target Item': targetItem
+		};
 	}
 
 	// Get Menus
@@ -93,7 +88,7 @@ function loadNextTrial(e){
 
 }
 
-// Move to next trial and record events
+// Move to next trai and record events
 function nextTrial() {
 
 
@@ -151,12 +146,22 @@ function nextTrial() {
 
 		currentTrial++;
 	} else {
-		var nextButton = document.getElementById("nextButton");
-		if(nextButton.innerHTML == "Finish"){
-			location.href="postExperimentSurvey.html?id="+participantID;
+
+	    var nextButton = document.getElementById("nextButton");
+		if(nextButton.innerHTML == "Start Experiment"){
+			var vars = {};
+			var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+				vars[key] = value;
+			});
+			var participantID = vars["id"];
+			console.log(participantID);
+			if(participantID > 0 && participantID < 9){
+				var url = "experiment.html?id="+participantID;
+				location.href = url;
+			}
 		} else {
-			nextButton.innerHTML = "Finish";
-			tracker.toCsv();
+			nextButton.innerHTML = "Start Experiment";
+			nextButton.style.fontSize = "20px";
 		}
 	}
 }
